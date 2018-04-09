@@ -232,9 +232,9 @@ function Student(numero,nom,prenom,jour,mois,annee,mail){
    this.notes.push(note);
  };
 
- let elise = new Student(1,"SPACHER","Loic",16,1,1996,"loic.spacher@gmail.com");
+ let loic = new Student(1,"Spacher","Loic",16,1,1996,"loic.spacher@gmail.com");
  console.log("Affichage du résultat du constructeur");
- elise.affichInfo();
+ loic.affichInfo();
 
 // Question 7
 
@@ -243,9 +243,9 @@ function studentsBirthday(tabStudents,month){
   return tabStudents.filter((element) => element.birth.getMonth() === month);
 }
 
-let loic = new Student(1,"Moreau","Elise",14,7,1993,"moreau.elise13@gmail.com");
-let nicolas = new Student(1,"Lardier","Nicolas",22,1,1997,"nico-lardier@outlook.fr");
-let gaetan = new Student(1,"Lagraviere","Gaetan",25,0,1990,"gaetan.lagraviere@gmail.com");
+let elise = new Student(1,"Moreau","Elise",14,7,1993,"moreau.elise13@gmail.com");
+let nicolas = new Student(1,"Lardier","Nicolas",22,4,1997,"nico-lardier@outlook.fr");
+let gaetan = new Student(1,"Lagraviere","Gaetan",25,1,1990,"gaetan.lagraviere@gmail.com");
 let tabStudents = [loic, nicolas, gaetan, elise];
 console.log("Les eleves nés un mois de janvier");
 let birthdayStudent = studentsBirthday(tabStudents,0);
@@ -265,29 +265,26 @@ oldestStudents.forEach(element => element.affichInfo());
 
 //Question 9 :
 
-function studentsGroup(nomgpe,formation,liste,annee){
+function groupeEtudiants(nomgpe,formation,liste,annee){
         this.nomgpe = nomgpe;
         this.formation = formation;
         this.liste = liste;
         this.annee = annee;
 }
 
-let studentsGrp = new studentsGroup("Les étudiants les plus beaux", "AS", tabStudents, 2018);
+let groupeEtudiant = new groupeEtudiants("Les étudiants les plus beaux", "AS", tabStudents, 2018);
 
 // Question 10 :
 
-//Ajouter élève groupe
-studentsGroup.prototype.addStudent = function(student) {
+groupeEtudiants.prototype.ajouterEtudiant = function(student) {
     this.liste.push(student);
 }
 
-//Compter nb élève  groupe
-studentsGroup.prototype.countStudents = function() {
+groupeEtudiants.prototype.comterNombreEtudiant = function() {
     return this.liste.length;
 }
 
-//Calculer moyenne générale chaque étudiant groupe
-studentsGroup.prototype.studentGlobalAverage = function() {
+groupeEtudiants.prototype.moyenneEtudiantGroupe = function() {
     return this.liste.map(element => {
         return {
             nom : element.nom,
@@ -296,8 +293,7 @@ studentsGroup.prototype.studentGlobalAverage = function() {
     });
 }
 
-//Calculer moyenne du groupe pour une matière
-studentsGroup.prototype.studentsGlobalAverage = function(subject) {
+groupeEtudiants.prototype.moyenneGroupeMatiere = function(subject) {
     let notes = [];
     this.liste.forEach(function(student){
         notes = notes.concat(student.notes
@@ -309,26 +305,24 @@ studentsGroup.prototype.studentsGlobalAverage = function(subject) {
 }
 
 let mehdi = new Student(1,"Maaroufi","Mehdi",14,8,1990,"mehdi.maarouf@gmail.com");
-studentsGrp.addStudent(mehdi);
+groupeEtudiant.ajouterEtudiant(mehdi);
 
-console.log("Nombre d'élèves du groupe : ");
-console.log(studentsGrp.countStudents());
+console.log("Nombre d'élèves dans groupe : ");
+console.log(groupeEtudiant.comterNombreEtudiant());
 
 console.log("Moyenne des élèves :");
-//Ajout de notes pour les élèves
-// Modifier ici pour chaque élèves paske plus mieux 
-studentsGrp.liste.forEach(element => element.ajoutNote("Maths", Math.round(Math.random() * 20)));
-studentsGrp.liste.forEach(element => element.ajoutNote("Com", Math.round(Math.random() * 20)));
-studentsGrp.liste.forEach(element => element.ajoutNote("BDD", Math.round(Math.random() * 20)));
-let averages = studentsGrp.studentGlobalAverage();
-averages.forEach(element => console.log(element));
 
-console.log("Moyenne des élèves en maths :");
-console.log(studentsGrp.studentsGlobalAverage("Maths"));
+groupeEtudiant.liste.forEach(element => element.ajoutNote("JS", Math.round(Math.random() * 20)));
+
+let moyenneGrp = groupeEtudiant.moyenneEtudiantGroupe();
+moyenneGrp.forEach(element => console.log(element));
+
+console.log("Moyenne des élèves en Javascript :");
+console.log(groupeEtudiant.moyenneGroupeMatiere("JS"));
 
 // Question 11 :
 
-studentsGroup.prototype.giftMark = function(month,subject){
+groupeEtudiants.prototype.cadeau = function(month,subject){
     let students = studentsBirthday(this.liste,month);
     students.forEach(student => {
         student.notes.forEach(note => {
@@ -339,8 +333,10 @@ studentsGroup.prototype.giftMark = function(month,subject){
 }
 
 
-console.log("Moyenne des élèves en maths avant l'anniversaire:");
-studentsGrp.liste.forEach(element => console.log(element.nom + " : " + element.notes.filter(element => element.matiere === "Maths").map(element => element.note)));
-studentsGrp.giftMark(0,"Maths");
-console.log("Moyenne des élèves en maths après l'anniversaire:");
-studentsGrp.liste.forEach(element => console.log(element.nom + " : " + element.notes.filter(element => element.matiere === "Maths").map(element => element.note)));
+console.log("Moyenne des élèves en Javascript avant l'anniversaire:");
+groupeEtudiant.liste.forEach(element => console.log(element.nom + " : " + element.notes.filter(element => element.matiere === "JS").map(element => element.note)));
+groupeEtudiant.cadeau(0,"JS");
+
+
+console.log("Moyenne des élèves en Javascript après l'anniversaire:");
+groupeEtudiant.liste.forEach(element => console.log(element.nom + " : " + element.notes.filter(element => element.matiere === "JS").map(element => element.note)));
