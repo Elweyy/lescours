@@ -1,0 +1,134 @@
+class Lanceur
+!!!130961.java!!!	Lanceur(inout classedeTest : Object)
+		this.interfaceGraphique = null;
+		this.classDeTest = classedeTest;
+!!!131089.java!!!	lance(inout sortie : Sortie) : void
+		// creer l'interface graphique
+		this.interfaceGraphique = sortie;
+		// execute les tests
+		executeTests();
+!!!131217.java!!!	executeTests() : void
+		// regenere les logs
+		Logs logs = genereLog();
+
+		// mise a jour interface
+		interfaceGraphique.miseAjour(logs);
+!!!131345.java!!!	genereLog() : Logs
+
+		Logs res = new Logs("" + this.classDeTest.getClass());
+
+		// recharge a chaud les classes avec un nouveau classLoader
+		rechargeAChaud();
+
+		// inxcrementer le nombre de lancer
+		numLancer++;
+
+		// recupere les methodes de test
+		Method[] methodes = this.classDeTest.getClass().getMethods();
+
+		// les garde si elles contiennent test
+		ArrayList<Method> listeMethodes;
+		listeMethodes = filtreMethodes(methodes);
+
+		// on trie les methodes
+		trieLesMethodesParNom(listeMethodes);
+		// System.out.println(listeMethodes);
+
+		// lance tous les tests
+		for (Method methodeATester : listeMethodes) {
+			testeUneMethode(methodeATester, res);
+		}
+		return res;
+!!!131473.java!!!	rechargeAChaud() : void
+		URL u, u2 = null;
+		try {
+			u = new File("").toURI().toURL();
+			u2 = new File("bin").toURI().toURL();
+			URL[] url = { u, u2 };
+			URLClassLoader ucl = new URLClassLoader(url, null);
+			Class classAn = ucl.loadClass(classDeTest.getClass()
+					.getName());
+			classDeTest = classAn.newInstance();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+!!!131601.java!!!	testeUneMethode(inout methodeATester : Method, inout res : Logs) : void
+
+		// creation du Thread
+		ThreadExecutionTest thread;
+		thread = new ThreadExecutionTest(this.classDeTest,
+				methodeATester, res);
+
+		// lancement du thread
+		thread.start();
+
+		// attente de la fin du
+		boolean tempsDepasse = false;
+		long arrivee = System.currentTimeMillis()
+				+ ThreadExecutionTest.DUREEMAX;
+
+		// tant que le thread est vivant et a encore du temps
+		while (thread.isAlive() && !tempsDepasse) {
+			tempsDepasse = (System.currentTimeMillis() > arrivee);
+		}
+
+		// TODO ajouter un log de depassement
+		if (tempsDepasse) {
+			thread.stop(new LanceurTimeOut("ex"));
+		}
+
+!!!131729.java!!!	filtreMethodes(inout methodes : Method [[]]) : ArrayList<Method>
+		ArrayList<Method> listeMethodes;
+		listeMethodes = new ArrayList<Method>();
+		for (Method m : methodes) {
+			// si son nom commence par test, on l'ajoute
+			if (m.getName().substring(0, 4).equals("test"))
+				listeMethodes.add(m);
+		}
+		return listeMethodes;
+!!!131857.java!!!	trieLesMethodesParNom(inout listeMethodes : ArrayList<Method>) : void
+		// on trie les methodes par numero
+		Comparator<Method> compMethode = new Comparator<Method>() {
+
+			@Override
+			public int compare(Method methode0, Method methode1) {
+				int n0 = getNumeroMethode(methode0);
+				int n1 = getNumeroMethode(methode1);
+				if (n0 < n1) {
+					return (-1);
+				}
+				if (n0 > n1) {
+					return (1);
+				}
+				return 0;
+			}
+
+			/**
+			 * calcule le numero de la methode
+			 * 
+			 * @param methode0
+			 *            methode dont on cherche le numero
+			 * @return numero de methode
+			 */
+			public int getNumeroMethode(Method methode0) {
+				try {
+					String[] tab = methode0.getName().split("_");
+					if (tab.length > 1)
+						return Integer.parseInt(tab[1]);
+				} catch (NumberFormatException e) {
+				}
+				return (-1);
+			}
+		};
+		Collections.sort(listeMethodes, compMethode);
+!!!131985.java!!!	lancer(inout classedeTest : Object, inout args : String [[]]) : void
+		Lanceur l = new Lanceur(classedeTest);
+
+		if ((args.length == 1) && (args[0].equals("-text"))) {
+			l.lance(new SortieTexte());
+		} else if ((args.length == 1) && (args[0].equals("-xml"))) {
+			l.lance(new SortieXML());
+		} else
+			l.lance(new SortieGUI(l));

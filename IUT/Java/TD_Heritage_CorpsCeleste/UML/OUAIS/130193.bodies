@@ -1,0 +1,8 @@
+class Stats
+!!!135825.java!!!	toString() : String
+		String r = "";
+		r += "nb test:" + this.nbTests;
+		r += "\n" + "nb Ok:" + this.nbOk;
+		r += "\n" + "nb Echec:" + this.nbEchec;
+		r += "\n nb erreur:" + this.nbErreur;
+		return (r);

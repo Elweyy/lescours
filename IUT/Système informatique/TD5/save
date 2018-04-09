@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir TP2/versions/V1
+cp -r TP2/projet/{src,www,doc} TP2/versions/V1
+cd TP2/projet
+rm src/{F{1,2}*,Main*} bin/{F{1,2}*,Main*} www/index* doc/{manual*,images/logo*}
+cd ../..
+rmdir TP2/projet/src
+mv TP2/versions/V1/src/ TP2/projet

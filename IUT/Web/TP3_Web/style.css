@@ -1,0 +1,38 @@
+body {
+  background-color: #f6f1ed;
+  font-family: Arial;
+  background-image: url(joli.jpg);
+  background-size: contain;
+  background-attachment: fixed;
+
+}
+
+h1 {
+  font-size: 3em;
+  text-align: center;
+  font-weight: bold;
+}
+h2  {
+  background-color: #0abfdc;
+  font-weight: normal;
+}
+
+h3  {
+  font-weight: bold;
+}
+h4 {
+  background-color: #68e5bc;
+  font-weight: bold;
+}
+
+p {
+  color: #65788a;
+}
+ul {
+  background-color: #ffe8aa;
+}
+
+a {
+  color: #feb933;
+  background-color:  #fff4a4;
+}

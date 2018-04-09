@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir -p TP2/{versions,projet/{src,bin,www,doc/images}}
+touch TP2/projet/src/{F{1,2},Main}.java
+touch TP2/projet/bin/{F{1,2},Main}.java
+touch TP2/projet/www/index.html
+touch TP2/projet/doc/manual.pdf TP2/projet/doc/images/logo.png

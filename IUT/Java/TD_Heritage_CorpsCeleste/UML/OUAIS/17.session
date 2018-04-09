@@ -1,0 +1,16 @@
+window_sizes 1800 911 450 1344 725 128
+
+diagrams
+  active  classdiagram_ref 128017 // Heritage
+    1344 725 100 A4 0 0
+  deploymentdiagram_ref 128145 // Oui
+    1075 580 100 A4 0 0
+end
+show_stereotypes
+selected class_ref 128657 // Satellite
+open
+  classview_ref 128017 // TD_Heritage_CorpsCeleste
+  artifact_ref 128017 // CorpsCeleste
+  classview_ref 128401 // Heritage
+end
+end

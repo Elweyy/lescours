@@ -1,0 +1,13 @@
+opendir
+readdir
+->
+lstat
+->
+struct stat
+->
+st_uid n du propriétaire -> nom avec getpwuid()
+st_gid groupe -> getgrajd()
+st_mtime datemodif
+st_nlink
+
+readlink()

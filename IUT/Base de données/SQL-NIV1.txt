@@ -1,0 +1,467 @@
+SELECT last_name, salary
+FROM employees
+WHERE salary>=12000
+ORDER BY salary DESC; 
+
+
+
+
+
+SELECT last_name, department_id
+FROM employees
+WHERE employee_id=176   ;
+
+
+
+SELECT last_name, salary
+FROM employees
+WHERE salary <=5000 or salary >=12000
+ORDER BY salary DESC;
+
+SELECT employee_id, last_name, hire_date
+FROM employees
+WHERE Upper(last_name) IN ('MATOS','TAYLOR')
+ORDER BY hire_date DESC ;
+
+SELECT last_name
+FROM employees
+WHERE Upper(last_name) LIKE 'J%' OR 
+      Upper(last_name) LIKE 'M%' OR
+      Upper(last_name) LIKE 'A%'
+ORDER BY last_name ASC  ;
+
+SELECT last_name AS nom, Length(last_name) AS longueur
+FROM employees
+WHERE SubStr(Upper(last_name),1,1) IN ('J','M','A')
+ORDER BY last_name ASC  ;
+
+SELECT department_id, Avg(salary)
+FROM employees
+GROUP BY department_id;
+
+SELECT Max(Avg(salary))
+FROM employees
+GROUP BY department_id;
+
+SELECT Sum(1)
+FROM employees, departments;
+
+
+SELECT Count(e.employee_id) AS "Nombre employés", d.department_name AS "Département"
+FROM employees e, departments d 
+WHERE e.department_id = d.department_id
+GROUP BY d.department_name
+ORDER BY   Count(e.employee_id) ASC;
+
+SELECT mana.manager_id, Concat(Concat(mana.last_name,' manage '), emp.last_name) AS  MANAGER
+FROM  employees emp, employees mana
+WHERE emp.manager_id(+) = mana.manager_id
+
+
+SELECT Nvl(mana.last_name,'personne') ||' manage '|| emp.last_name
+FROM  employees emp, employees mana
+WHERE emp.manager_id = mana.manager_id(+)
+ORDER BY mana.last_name 
+
+ 
+
+SELECT Count(e.employee_id) AS "Nombre employés", d.department_name AS "Département"
+FROM employees e, departments d 
+WHERE e.department_id(+) = d.department_id
+GROUP BY d.department_name
+ORDER BY   Count(e.employee_id) ASC;       
+
+
+
+SELECT  last_name || ' ' || first_name AS "Nom Prénom", hire_date AS "Date d embauche" , Round(Months_Between(SYSDATE,hire_date),0) AS "Mois" 
+FROM employees emp
+ORDER BY 3 ASC;
+
+
+SELECT  job_id ,Avg(salary), Min(salary), Max(salary)
+FROM employees 
+GROUP BY job_id , department_id , employee_id;
+
+SELECT  job_id, Count(employee_id)
+FROM employees
+GROUP BY job_id;
+
+SELECT job.job_title AS "Poste", Count(emp.employee_id) AS "ID employée"
+FROM employees emp, jobs job
+WHERE emp.job_id = job.job_id
+GROUP BY job.job_title
+ORDER BY 2;
+
+
+SELECT Nvl(manager_id,0), Min(salary)
+FROM employees
+GROUP BY manager_id
+HAVING Min(salary) > 6000;
+
+
+SELECT Count(employee_id) AS "Nombre employées",
+       To_Char(hire_date,'yyyy') AS "Année"
+FROM employees
+WHERE To_Char(hire_date,'yyyy')='1995' 
+   OR To_Char(hire_date,'yyyy')='1996' 
+   OR To_Char(hire_date,'yyyy')='1997' 
+   OR To_Char(hire_date,'yyyy')='1998'
+GROUP BY To_Char(hire_date,'yyyy')
+
+
+
+SEANCE SUIVANTE ----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+SELECT  dep.department_id,Count(emp.employee_id)
+FROM departments dep, employees emp
+WHERE dep.department_id = emp.department_id(+)
+GROUP BY dep.department_id
+HAVING Count(emp.employee_id)=0;
+
+
+
+
+SELECT last_name
+FROM employees 
+WHERE salary >
+                ( SELECT salary 
+                FROM employees 
+                WHERE last_name='Abel');
+
+
+
+
+SELECT last_name, job_id, salary
+FROM employees
+WHERE job_id = 
+                ( SELECT job_id
+                FROM employees
+                WHERE employee_id=141)
+AND salary >
+              (SELECT salary
+              FROM employees
+              WHERE employee_id=143);
+
+
+
+SELECT last_name, job_id, salary
+FROM employees
+WHERE salary =
+              (SELECT Min(salary)
+              FROM employees );
+
+
+
+SELECT department_id, Min(salary)
+FROM employees
+GROUP BY department_id 
+HAVING Min(salary) >
+                    (SELECT Min(salary)
+                    FROM employees
+                    WHERE department_id=50);
+
+
+
+SELECT employee_id, last_name, job_id, salary
+FROM  employees
+WHERE salary < ANY 
+                  ( SELECT salary
+                  FROM employees
+                  WHERE job_id='IT_PROG')
+AND job_id <> 'IT_PROG';
+
+
+SELECT employee_id, last_name, job_id, salary
+FROM  employees
+WHERE salary < ALL  
+                  ( SELECT salary
+                  FROM employees
+                  WHERE job_id='IT_PROG')
+AND job_id <> 'IT_PROG';
+
+
+SELECT emp.last_name
+FROM employees emp
+WHERE emp.employee_id NOT IN 
+                            ( SELECT mgr.manager_id
+                            FROM employees mgr);
+
+SELECT department_id,employee_id, last_name, salary,
+      Round(( SELECT  Avg(salary)
+                  FROM employees d 
+                  WHERE emp.department_id = d.department_id    ))    AS "Salaire moyen" 
+FROM  employees emp
+WHERE emp.salary >   
+                  ( SELECT  Avg(salary)
+                  FROM employees d 
+                  WHERE emp.department_id = d.department_id    )     
+ORDER BY department_id ;                  
+
+SELECT  department_id ,Avg(salary)
+FROM employees
+GROUP BY department_id;
+
+
+SELECT employee_id, job_id
+FROM employees 
+UNION 
+SELECT employee_id, job_id
+FROM job_history;
+
+SELECT employee_id, job_id
+FROM employees 
+UNION ALL 
+SELECT employee_id, job_id
+FROM job_history;
+ORDER BY employee_id
+
+SELECT employee_id, job_id
+FROM employees 
+INTERSECT  
+SELECT employee_id, job_id
+FROM job_history;
+
+SELECT employee_id, job_id
+FROM employees 
+MINUS 
+SELECT employee_id, job_id
+FROM job_history;
+
+
+SELECT department_id, To_Number(NULL) location, hire_date
+FROM employees
+UNION
+SELECT department_id, location_id, To_Date(NULL)
+FROM departments;
+
+SELECT last_name, salary, department_id
+FROM employees
+WHERE salary > 3000
+AND department_id = 10;
+
+
+SELECT last_name, salary, employee_id
+FROM employees
+WHERE salary > 3000
+intersect
+SELECT last_name, salary, employee_id
+FROM employees
+WHERE department_id=10;
+
+COLUMN a_oui NOPRINT
+SELECT 'oui' ........ ;
+
+
+SELECT employee_id, last_name, salary
+FROM employees
+WHERE salary > 
+                (SELECT Avg(salary)
+                FROM employees)
+ORDER BY salary asc ;
+
+
+
+SELECT employee_id, last_name
+FROM  employees emp
+WHEre emp.department_id IN 
+                      (SELECT distinct department_id
+                      FROM employees dp
+                      WHERE Lower(dp.last_name) LIKE '%u%');
+
+
+
+SELECT emp.department_id, emp.last_name, emp.job_id
+FROM  employees emp, departments dp 
+WHERE emp.department_id = dp.department_id
+AND Lower(dp.department_name) = 'executive';
+
+
+SELECT  d.department_id 
+FROM   departments d
+MINUS
+SELECT DISTINCT d.department_id
+FROM departments d, employees e
+WHERE d.department_id=e.department_id
+AND Upper(e.job_id) = 'ST_CLERK';
+
+
+
+SELECT dep.department_name, Avg(emp.salary)
+FROM employees emp, departments dep
+WHERE emp.department_id=dep.department_id(+)
+HAVING Avg(emp.salary)>5000
+group BY dep.department_name;
+
+
+CREATE TABLE saveemployees
+  AS
+    SELECT *
+    FROM employees ;
+
+
+
+DROP TABLE saveemployees ;
+
+CREATE VIEW salvu50
+ AS SELECT employee_id ID_NUMBER, last_name NAME, salary*12 ANN_SALARY
+    FROM employees
+    WHERE department_id = 50;
+
+
+SELECT * 
+FROM salvu50;
+
+CREATE VIEW  vudepname
+  AS SELECT dep.department_name DEPARTEMENT, Count(emp.employee_id) NB_EMPLOYEES
+      FROM employees emp, departments dep
+      WHERE emp.department_id(+) = dep.department_id
+      group BY dep.department_name;
+
+SELECT *
+FROM vudepname;
+
+DROP VIEW vudepname;
+
+
+SELECT employee_id AS "ID employee", last_name AS "Name", salary AS "Salaire",
+        round((SELECT Avg(salary)
+        FROM employees)) AS " Salaire moyen entreprise" 
+FROM employees
+where salary > ( SELECT Avg(salary)
+                  FROM employees)
+ORDER BY salary ASC;
+
+
+SELECT employee_id, last_name, salary
+FROM employees
+WHERE salary > ( SELECT Avg(salary)
+                  FROM employees)
+AND department_id IN 
+                      (SELECT distinct department_id
+                      FROM employees dp
+                      WHERE Lower(dp.last_name) LIKE '%u%');
+
+
+
+SELECT  d.department_id 
+FROM   departments d
+MINUS
+SELECT DISTINCT d.department_id
+FROM departments d, employees e
+WHERE d.department_id=e.department_id
+AND Upper(e.job_id) = 'ST_CLERK';
+
+SELECT cou.country_id, cou.country_name
+from  countries cou
+
+MINUS
+SELECT cou.country_id, cou.country_name
+from departments dep, locations loc, countries cou
+WHERE cou.country_id=loc.country_id(+)
+AND dep.location_id=loc.location_id;
+
+
+
+SELECT department_id, job_id,     CASE
+              WHEN department_id=10 THEN 1
+            WHEN department_id=50 THEN 2
+            WHEN department_id=20 THEN 3
+            END 
+
+FROM employees
+WHERE department_id=10 OR department_id=50 OR department_id=20
+INTERSECT 
+SELECT department_id, job_id,     CASE
+          WHEN department_id=10 THEN 1
+          WHEN department_id=50 THEN 2
+          WHEN department_id=20 THEN 3
+          END 
+FROM employees
+ORDER BY 3 ;
+
+
+
+----------------------------------SEANCE SUIVANTE J'EN AI OUBLIEE UNE LOL ( enfin elle est là mais je l'ai pas notifiée, tu m'as compris tmtc ) ------------------------------------------------------------------------------------------------------------------------------------------SALUT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+

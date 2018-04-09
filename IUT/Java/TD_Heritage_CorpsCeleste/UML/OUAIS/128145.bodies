@@ -1,0 +1,25 @@
+class CorpsRevolution
+!!!128657.java!!!	rendreRayonOrbital() : double
+      return this.rayonOrbital;
+!!!128785.java!!!	donnerNomClasseCorps() : String
+    return "Corps Revolution";
+!!!128913.java!!!	CorpsRevolution(in n : String, in r : double, in m : double, in rO : double, inout cR : CorpsCeleste)
+    super(n,r,m);
+    if(rO<1) {
+      this.rayonOrbital=1;
+    }else{
+      this.rayonOrbital=rO;
+    }
+    if(cR ==null){
+      this.centreRevolution= new CorpsCeleste("",1,1);
+    }else{
+      this.centreRevolution=cR;
+    }
+!!!129041.java!!!	tournerAutourDe() : CorpsCeleste
+    return this.centreRevolution;
+!!!129169.java!!!	toString() : String
+    String s;
+    s= super.toString()+"\n"+"effectue des revolutions a une distance de:"+ this.rayonOrbital +"millions de km"+"\n"
+    +"autour du corps celeste: " + this.tournerAutourDe().rendreNom()
+    +", qui est un corps de type "+ this.centreRevolution.donnerNomClasseCorps();
+    return s;

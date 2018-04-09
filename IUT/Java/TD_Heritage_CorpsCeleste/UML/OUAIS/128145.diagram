@@ -1,0 +1,21 @@
+format 215
+
+artifactcanvas 128017 artifact_ref 128017 // CorpsCeleste
+  xyz 132 176 2000
+end
+artifactcanvas 128145 artifact_ref 128145 // CorpsRevolution
+  xyz 440 270 2000
+end
+artifactcanvas 128273 artifact_ref 128273 // Etoile
+  xyz 91 315 2000
+end
+artifactcanvas 128401 artifact_ref 128529 // Principale
+  xyz 54 198 2005
+end
+artifactcanvas 128529 artifact_ref 128657 // Satellite
+  xyz 178 82 2000
+end
+artifactcanvas 128657 artifact_ref 128273 // Etoile
+  xyz 331 102 2000
+end
+end

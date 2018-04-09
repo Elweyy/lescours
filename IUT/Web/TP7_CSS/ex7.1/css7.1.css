@@ -1,0 +1,34 @@
+
+
+html {
+  height: 100%;
+
+}
+
+
+body {
+  width: 100%;
+  height: 100%;
+  margin:0;
+  background-color: oldlace;
+ }
+
+h3 {
+  background-color: peru;
+}
+
+nav {
+	background-color: #020304;
+	color: ivory;
+}
+
+section {
+	background-color : #999999;
+}
+p {
+  
+  background-color : khaki;
+ 
+}
+
+ 

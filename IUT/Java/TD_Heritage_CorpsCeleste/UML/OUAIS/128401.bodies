@@ -1,0 +1,16 @@
+class Planete
+!!!129809.java!!!	Planete(in n : String, in r : double, in m : double, in rO : double, inout cR : CorpsCeleste)
+    super(n,r,m,rO,cR);
+!!!129937.java!!!	avoirMemeSoleil(inout JCVD : CorpsRevolution) : boolean
+    if(JCVD.tournerAutourDe()==this.tournerAutourDe()){
+      return true;
+    }else{
+      return false;
+    }
+
+!!!130065.java!!!	donnerNomClasseCorps() : String
+    return "Planete";
+!!!130193.java!!!	toString() : String
+    String s;
+    s=super.toString();
+    return s;

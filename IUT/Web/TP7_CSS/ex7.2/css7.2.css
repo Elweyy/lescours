@@ -1,0 +1,71 @@
+
+
+html {
+  height: 100%;
+  padding:0;
+
+}
+
+
+body {
+  width: 100%;
+  height: 100%;
+  margin:0;padding:0;
+   }
+
+
+nav  {
+	background-color:black;
+	color: white;
+}
+
+ul.nav {
+
+}
+ul.tools {
+
+}
+nav li {
+}
+
+.entete {
+
+	background-color : #1F7F7F;
+}
+	
+section {
+
+	}
+
+
+p {
+}
+
+p.thumb {
+	background-color:transparent;
+
+}
+p.descr {
+
+	 background-color:#C5983B;
+	 
+}
+p.big-descr {
+	background-color:#324984;
+	color:#C7D0E6;
+
+}
+
+
+p img {
+
+}
+
+hr {
+}
+footer {
+
+}
+
+  
+	  

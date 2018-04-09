@@ -1,0 +1,24 @@
+public class ListeChainee {
+
+	/*
+	 * On donne l'indice de tête de liste
+	 */
+
+	private int tete;
+	
+	/*
+	 * Tableau des maillons entiers
+	 */
+	
+	private MaillonEntier[] tab;
+	
+	
+
+
+
+
+
+
+
+
+}

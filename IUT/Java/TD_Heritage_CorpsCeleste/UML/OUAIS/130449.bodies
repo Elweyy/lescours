@@ -1,0 +1,14 @@
+class OutilTest
+!!!133521.java!!!	assertEquals(inout attendu : Object, inout obtenu : Object, in erreur : String) : void
+		// si on test des references null
+		if (attendu == null) {
+			if (obtenu != null)
+				throw new LanceurTestException(erreur + " [attendu=>" + attendu
+						+ ", obtenu=>" + obtenu + "]");
+		}
+		// sinon on peut tester egalite
+		else if (!attendu.equals(obtenu))
+			throw new LanceurTestException(erreur + " [attendu=>" + attendu
+					+ ", obtenu=>" + obtenu + "]");
+!!!133649.java!!!	fail(in erreur : String) : void
+		throw new LanceurTestException(erreur);

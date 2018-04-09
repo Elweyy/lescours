@@ -1,0 +1,399 @@
+Algo avancé
+
+
+Exemple de problème récursifs :
+
+  un robot qui doit monter n marches = le pb à résoudre  => M(n), n étant un paramètre
+  M(n)= monter 1 marche     pb terminal, cas spécial                                                    Décomposition d'un problème en problème plus simple
+        puis monter n-1 marches => M(n-1), similaire à M(n)
+
+        La décomposition s'arrête avec la condition d'arrêt
+        Définir une formule de récurrence ex : M(n) = M(1) + M(n-1)
+
+
+
+
+
+
+        Les paramètres changent d'une étage à l'autre sinon les appels récursifs ne s'arrêtent jamais.
+
+        0! =1
+        3! =3*2*1
+        n!=n*n-1*n-2*...*1
+
+
+
+
+
+
+  fonction fact(n:entier):entier
+    début
+      res = 1
+      si n=0 alors
+        retourner res <-1
+      sinon
+        m <- n-1
+        p <- fact(m)
+        res <- n*p
+      fsi
+    retourner res
+
+
+      La fonction est appelé simultanément plusieurs fois au sein de la même fonction avec autant de variables.
+
+
+
+
+
+      Exercice 2 Triangle pascal
+
+      fonction tPascal(n:entier) tableau entier [1 .. n]
+        début
+            si n=1 ou n=2
+              alors pour i de 1 à n faire
+                ligne [i] <- 1
+              fpour
+            sinon ligne [1] <- 1
+              lignePrec <- tPascal(n-1)
+              pour du 2 à n-1 faire
+                ligne[j] <- lignePrec(j)+lignePrec(j-1)
+              fpour
+              ligne[n] <- 1
+            fsi
+            retourne ligne
+          fin
+
+
+
+
+
+          Exercices complémentaires
+          1) somme des entiers de 1 à n de manière récursive
+
+          fonction oui( n:entier)
+            debut
+                Si n =1 alors
+                  res <- 1
+                sinon
+                  res <- n+somme(n-1)
+                fsi
+              retourner (res)
+            fin
+
+
+            Lexique:
+            n:entier
+            res:entier
+
+          2) calcul du minimum d'un tableau d'entiers( en paramètre : tableau + taille)
+
+            fonction mintab(tab: tableau entier [1..m], n entier ) : entier
+
+              si n=1
+
+                min <- tab[1]
+
+
+              sinon
+
+                min2 < -mintab(t, n-1)
+                  si  t[n] <= min2 alors
+                  min <- t[n]
+                  sinon
+                  min <- min2
+                  fsi
+                fsi
+              retourner min
+
+            fin
+
+
+
+
+
+
+          3) Fonction qui détermine si un tableau est un palindrome (tableau de caractères )
+
+
+          fonction palindrome ( tab : tableau caractères [1 .. n], deb entier, fin entier): booleen
+            début
+              si deb >= fin alors
+                pal <-vrai
+              sinon
+                si t[deb] =/= t[fi] alors
+                  pal <- faux
+                sinon
+                pal <- estPalindrome( t, deb+1, fin -1)
+              fsi
+            fsi
+          returne pal
+        fin
+
+
+
+
+
+
+
+fonction binaire (n: entier)                exe : binaire(13) va afficher 1 1 0 1
+  début
+    si n > 1 alors
+      écrire (n mod 2)
+    sinon
+      binaire(n/2)
+    fsi
+  fin
+
+
+  on peut aussi l'écrire :
+    si n>1 alors
+      binaire(n/2)
+    fsi
+    écrire (n mod 2)
+
+
+
+
+
+Fibonacci: Leonard de Pise ( XIIIème siècle)
+
+fonction fibo(n: entier) : entier
+  début
+    si n < 2 alors
+      Fibonacci=n
+    sinon
+      fibo(n-1)
+      Fibonacci=fibo(n-1)+fibo((n-1)-1)
+    fsi
+    écrire(Fibonacci)
+  fin
+
+
+
+
+fonction Hanoï
+
+  /// H(3,A,B) = déplacer 3 disques de A vers B ( sous entendu avec C comme poteau intermédiaire)
+  Pour simplifier l'écriture, on ajoute en paramètre le poteau intermédiaire -> H(3,A,B,C)
+  On le décomposer en H(2,A,C,B) <- B intermédiaire et H(2,C,B,A) <- A intermédiaire
+
+
+
+  EN JAVA
+    public class Hanoi {
+      public static void hanoi(int n, char debut, char deb, char fin, char inter ){
+      if (n==1) {
+      System.out.println("Move disk from"+begin+"to"+end);
+        }else{
+        hanoi(n-1,begin,inter,end);
+        hanoi(1,begin,end,inter);
+        hanoi(n-1,inter,end,begin);
+        }
+      }
+
+      public static void main (String args[]){
+        hanoir(3,'A','B','C')
+
+      }
+
+    }
+
+
+placerReines(1): essaie place les reines à partir de la i-ième colonne
+
+
+// en java
+
+public clss reines {
+  plubic staticer placerReines(int i) {
+  int j;
+  for (j=1;j<=8;j++){
+    System.out.println("i="+i+"j="+j);
+    if ( i+1<9)
+    placerReines(i+1):
+    }
+
+  }
+
+  public static void main(String args[])
+    placerReines(1);
+}
+
+
+
+public class reines
+
+  static int n=8;
+  static boolean ligne[] = new boolean[n+1];
+  static boolean diagbleue[]= new boolean[2*n];
+  static boolean diagroupe[]= new boolean[2*n];
+
+  public static void PlacerReines(int i) {
+    int j,k;
+    for (j=1;j<=n;j++){
+    pos[i]=j;
+    if ((ligne[j]==false) && (diagbleue[i-j+n]==false)
+                          && (diagroupe[i+j-1]== false)) {
+        ligne[j]=true;diagbleue[i-h+n]=true; diagroupe[i+j-1]=true;
+        if (i<n)
+          placerReines(i+1);
+        if (i==n){
+          for (k=n;k<n+1;k++)
+            System.out.println(pos[k]+",");
+          System.out.println();
+        }
+        ligne[j]=false;diagbleue[i-j+n]=false;diagroupe[i+j-1]=false;
+      }
+    }
+  }
+
+
+-----------------------------------------PROJET----------------------------------------------------------------------------------------------------------------------------------
+
+Imaginons un rectangle comme un grand terrain, découpé en parcelles rectangulaires
+Le terrain = int n * int m
+Idem parcelles
+Le découpage est appelé un pavage
+On ne s'intéresse qu'aux pavages réduits, càd un pavage où les différentes valeurs entières des abscisses et des ordonnées interviennent dans le découpage
+
+
+quel  le plus petit nombre de rectangle dans un pavage réduit ? dans le cas 2*3 => 4
+
+
+
+
+LE PROJET c'est :
+-soit un rectangle n*m, trouver tous les pavages compactes et les compter
+
+-en particulier  dans le cas des rectangles 3*n, donnez le nombre le nombre de pavage compact en fonction de n
+
+- élaborer un algo de recherche avec retour arrière pour trouver toutes les solutions,
+- les afficher
+
+idée : considérer
+
+
+Exo 7 :
+quels sont les besoins par rapport à la structure de données ?
+- savoir où l'on est
+- la "liste" des sommets parcourus jusqu'à présent
+- connaître les successeurs d'un sommet ( = représentation du graphe )
+
+idée 1 tableau ( bcp de cases vides, pas opti)
+idée 2 liste d'arêtes
+
+
+
+
+
+
+
+
+Exercices sur les listes (p. 13) :
+
+
+
+
+fonction inverserListe ( l : liste (V), p :Place) : liste(V)
+  début
+    si finliste(l,p) alors li <- lisvide()
+    sinon
+      p1 <- suc(l,p)
+      li <- inverserListe(l,p1)
+      v <-val(l,p)
+      li <- adjqlis(li,v)
+
+    fsi
+    retourne li
+  fin
+
+
+
+
+Complexité :
+   Soit un algo A qui dépend d'un entier m,
+   on peut s'intéresser au temps de calcule en fond de m
+   Dans la réalité les données sont plus complexes:
+   ex : tri d'un certain nombre de villes
+
+taille des données : abstraction des données
+exemple : nombre de chaînes à trier
+
+Algo : on essaie de quantifier l'exécution par rapport à
+des paramètres
+On peut s'intéresser à la mémoire utilisée par un Algo
+
+complexité linéaire : le temps de calcul est à peu près
+proportionnel à m
+
+On s'intéresse à de grandes valeurs à m, à la tendance
+
+comportement asymptotique
+
+Si l'algo a une complexité linéaire on dit que l'Algo
+est en O(n)
+
+T(n) = 3n
+     = 7n      => O(n)
+
+
+....................
+
+Exo
+1) fonction hanoi( n entier,         )
+    début
+      si n >1
+        ..
+
+
+
+Soit T(n) le temps pris pour hanoi(n)
+T(n) =2xT(n-1)+c, pour simplifier on prend c =1
+T(n) = 2xT(n-1)+1
+T(n-1) = 2xT(n-2)+1
+...
+T(1)= 2T(0) +1 = 1
+T(0)=0
+
+T(n) = 2^n -1
+
+
+---------------------------
+Les arbres tout ça tout ça
+--------------------------
+
+Exemple 2 :
+
+fonction imprimerPréfixé (arbre : ArbreBinaireChaîne, noeud : Noeud)
+ début
+    si non noeudvide (arbre,noeud) alors
+      écrire(val (arbre, noeud))
+      imprimerPréfixé (arbre, fg (arbre, noeud))
+      imprimerPréfixé (arbre, fd (arbre, noeud))
+    fsi
+ fin
+
+
+fonction imprimerInfixé ( arbre : ArbreBinaireChaîne, noeud : Noeud)
+  début
+      si non noeudvide (arbre,noeud) alors
+        imprimerInfixé (arbre, fg (arbre, noeud))
+        écrire(val(arbre,noeud))
+        imprimerInfixé (arbre, fd (arbre, noeud))
+      fsi
+    fin
+
+
+fonction imprimerPostfixé ( arbre : ArbreBinaireChaîne, noeud : Noeud)
+  début
+    si non noeudvide(arbbre,noeud) alors
+      imprimerPostfixé( arbre, fg(arbre,noeud))
+      imprimerPostfixé( arbre, fd(arbre,noeud))
+      écrire(val(arbre,noeud))
+    fsi
+  fin
+
+
+
+
+/fin du cours

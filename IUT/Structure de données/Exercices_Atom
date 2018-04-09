@@ -1,0 +1,280 @@
+Exercice 4
+
+
+On se met dans l'hypothèse que le problème est partiellement résolu
+On a construit une liste (partielle) triée contenant les entiers apparaissant
+ un nombre impair de fois
+
+
+
+
+début
+  lEntier <- lisvide()
+  lavaleurs <- lire()
+  valeur <- lire()
+  adjtlis(lEntier,valeur)
+
+  pour i de 2 à nb.valeur faire
+    valeur <- lire()
+    place0 <- tête(lEntier)
+    place1 <- suc(tête(lEntier))
+
+    si valeur =< val(lEntier, place1)
+      alors si valeur = val(lEntier, place1)  <- PROBLEME D'ACCES A UNE VALEUR INDEFINIE
+      alors suptlis(lEntier)
+      sinon adjtlis(lEntier, valeur)
+    sinon trouve <- faux
+      tant que non finliste(lEntier, place1) et non trouve faire
+        si valeur =< val(lEntier,place1)
+          alors si valeur=val(lEntier,place1)
+          sinon adjlis(lEntier,place0,valeur)
+          trouve <-vrai
+        sinon
+              place 1 <- suc(lEntier,place1)
+              place 0 <- suc(lEntier,place0)
+
+      fsi
+    ftantque
+  fin
+
+
+
+Fonctions
+
+  suptlis
+    début
+      pour i de 2 à lAdmis.nb faire
+        lAdmis.tab[i-1] <- lAdmis.tab[i]
+      fpour
+    lAdmis.nb <- lAdmis-1
+  fin
+
+Lexique : ..............
+
+
+  ajdlis
+    début
+      pour i de lAdmis.nb à p décroissant faire
+          lAdmis.tab[i+1] <- lAdmis.tab[i]
+      fpour
+          lAdmis.nb <- lAdmis.nb+1
+          lAdmis.tab[p] <- VALEUR
+
+      fin
+
+
+
+Deuxième poly
+
+fonction adjlis(l,p,v)
+  début
+      pl <- PlaceLibre
+      l[pl].val <-v
+      l[pl].suc <- l[p].suc
+      l[p].suc <- pl
+  fin
+
+
+
+  fonction suplis
+
+    début
+      ancl <- 0
+      p<- ancl
+        tant que l[p].suc =/= pos
+        ancl <- p
+        p <- l[p].suc
+        fintantque
+
+      l[ancl].suc <- l[p].suc
+      restituer place pos
+    fin
+
+
+
+
+    fonction chglis (l,pos,v)
+
+      début
+        l[pos].val=v
+      fin
+
+
+
+
+
+
+
+      Algorithme logique
+      fonction lEntierCréer ( ): Liste (entier)
+      début (*1*)
+      lEntier mlisvide( )
+      nbValeur mlire( )
+      pour i de 1 à nbValeur faire (*2*)
+      valeur mlire( )
+      place mtête (lEntier)
+      si finliste (lEntier, place) (*la liste est vide*) alors (*8a*) adjqlis (lEntier, valeur)
+      sinon (*8s*)
+      placePrécédente mplace (* initialisation artificielle *)
+      fini mfaux (*recherche de la valeur*)
+      tantque(*3*) non finliste (lEntier, place) et non fini faire
+      élément mval (lEntier, place)
+      si valeur délément alors (*4a*) fini mvrai
+      sinon (*4s*)
+      placePrécédente mplace
+      place msuc (lEntier, place)
+      fsi (*4*)
+      fintantque (*3*)
+      si valeur = élément (*valeur appartient déjà à la liste*) alors (*5a*)
+      suplis (lEntier, place)
+      sinon(*5s*) (*valeur n'appartient pas à la liste*)
+      si place = placePrécédente alors (*7a*)
+      (*valeur est inférieur à toutes les valeurs*)
+      adjtlis (lEntier, valeur)
+      sinon(*7s*)
+      adjlis (lEntier, placePrécédente, valeur)
+      fsi(*7*)
+      fsi(*5*)
+      fsi (*8*)
+      fpour(*2*)
+      retourne lEntier
+      fin(*1*)
+      Lexique
+      lEntier: Liste(entier), liste des entiers par ordre croissant
+      nbValeur : entier, nombre de valeurs à traiter
+      i : entier, indice d’itération
+      valeur : entier, ième donnée
+      place : Place, place courante
+      placePrécédente : Place, place précédent la place courante
+      fini : booléen, vrai lorsqu'on a trouvé l'entier ou lorsque la valeur courante est supérieure à la valeur cherchée.
+      élément : entier, valeur courante dans la liste
+
+
+
+      fonction faireOperation(): Liste(chaine)
+        debut
+          l <- pileVide()
+          valeur <- lire()
+          tantque valeur !="." faire
+            si valeur != "+" ou valeur != "-" alors
+              l.empiler(valeur)
+            sinon
+              si valeur ="." alors
+                un <- l.sommet()
+                l.depiler()
+                deux <- l.sommet()
+                l.depiler()
+                l.empiler(un+deux)
+              sinon
+                un <-l.sommet()
+                l.depiler()
+                deux <- l.sommet()
+                l.depiler()
+                l.empiler (deux - un)
+
+              fsi
+            fsi
+
+          valeur <- lire()
+
+        ftant
+        si (l.estPileVide()) alors
+          retourne (" La pile est vide, aucune opération réalisée")
+        sinon
+          retourne (l.sommet())
+        fin
+
+
+
+
+
+
+
+
+
+
+
+
+fileVide
+  si nb.elements = 0 alors
+    retourne vrai
+
+
+
+
+
+
+
+
+
+
+fonction premierfp (f : FilePrioritéTravaux) : chaîne
+
+    début
+      maxPr mf.tab [f.tete].priorite
+      nomFichPr mf.tab [f.tete].nom
+      i mf.tete mod MAXTAB + 1
+      nbParcouru m1
+      arret mmaxPr = 1
+      tantque(*2*) non arret et nbParcouru f.nb faire
+        si f.tab [i].priorite < maxPr alors (*3a*)
+          maxPr mf.tab [i].priorite
+          nomFichPr mf.tab[i].nom
+        fsi(*3*)
+        nbParcouru mnbParcouru + 1
+        i mi mod MAXTAB + 1
+        arret m(maxPr = 1)
+      fintantque(*2*)
+    nomFich mnomFichPr
+  fin
+
+
+
+
+
+La fonction ChercherDepart rend la postion du premier element de la ronde a partir de son nom
+
+fonction AM-STRAM-GRAM(ronde InOut: Ronde, nomPremier:chaine, k:entier)
+
+  début
+    si ronde.estvidelc == faux alors
+      pour i de 1 a dernier faire
+      ecrire(vallc(dernierlc))
+      suplc(ronde)
+      ChercherDepart(Ronde)
+
+
+
+    debut
+      place <-ChercherDepart(nomPremier)
+      Tant que !estvide(ronde)
+        pour i de 1 à k
+          place <- suclc(ronde, place)
+          i <- i+1
+        fpour
+        Psup <- place
+        Ecrire(val(ronde,psup))
+        place <- suclc(ronde,place)
+      fintantque
+    fin
+
+
+
+
+
+fonction  palindrome( mot :ListeSym): booléen
+  début
+      i <- tetels(mot)
+      j <- queuels(mot)
+      palindrome <- vrai
+      stop <- faux
+        tant que palindrome ou non stop faire
+          si valls(mot,i) =/= valls(mot,j) alors
+            palindrome <- faux
+          sinon
+          si
+
+
+
+
+fonction EtudChercherElement( listeEtudiant : Liste(Etudiant), nomEtudiant:chaîne): Place

@@ -1,0 +1,17 @@
+public class hanoi {
+  public static void hanoi(int n, char begin, char end, char inter ){
+  if (n==1) {
+  System.out.println("Move disk from"+begin+"to"+end);
+    }else{
+    hanoi(n-1,begin,inter,end);
+    hanoi(1,begin,end,inter);
+    hanoi(n-1,inter,end,begin);
+    }
+  }
+
+  public static void main (String args[]){
+    hanoi(10,'A','B','C');
+
+  }
+
+}

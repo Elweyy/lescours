@@ -1,0 +1,66 @@
+body{
+	background-color:rgb(246,241,235);
+	padding-left:5%;
+	padding-right:5%;
+	font-family:sans-serif;
+}
+
+
+h1 {
+  text-align: center;
+  color: rgb(118,116,114);
+}
+
+.nav {
+  background-color: rgb(222,219,212);
+	display: inline-block;
+	text-align: center;
+	width: 32%;
+	box-sizing: border-box;
+}
+
+
+footer {
+  text-align: center;
+}
+
+
+.bcpimg {
+  overflow: auto;
+  width: 100%;
+	padding-top: 10px;
+
+}
+
+.image2 {
+  box-sizing: border-box;
+  width: 30%;
+  display:inline-block;
+  vertical-align: middle;
+  padding:10px;
+
+}
+
+.image3 {
+  box-sizing: border-box;
+  width: 30%;
+  display:inline-block;
+  vertical-align: middle;
+  padding:10px;
+}
+
+
+
+.image4 {
+  box-sizing: border-box;
+  width: 30%;
+  display:inline-block;
+  vertical-align: middle;
+  padding:10px;
+}
+
+
+
+footer {
+  text-align: center;
+}

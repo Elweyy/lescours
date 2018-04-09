@@ -1,0 +1,4 @@
+class LogOk
+!!!132881.java!!!	LogOk(in nom : String)
+		this.type="Ok";
+		this.nomMethode=nom;

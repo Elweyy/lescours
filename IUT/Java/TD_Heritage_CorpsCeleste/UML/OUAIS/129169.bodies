@@ -1,0 +1,3 @@
+class LanceurTestException
+!!!132113.java!!!	LanceurTestException(in s : String)
+		super(s);

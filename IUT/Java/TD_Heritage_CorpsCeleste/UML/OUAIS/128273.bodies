@@ -1,0 +1,25 @@
+class Etoile
+!!!129297.java!!!	donnerNomClasseCorps() : String
+    return "Etoile"; // On ne met pas static puisqu'on veut modifier le résultat final
+!!!129425.java!!!	Etoile(in n : String, in r : double, in m : double, in t : double)
+    super(n,r,m);
+    if(t<0){
+      this.temperature=0.0;
+
+    }else{
+    this.temperature=t;
+    }
+    //le constructeur CorpsCeleste sert de base au constructeur Etoile, auquel on ajoute la variable température
+!!!129553.java!!!	calculerEnergieRecue(in distance : double) : double
+    double energie;
+    if (distance >0){
+      energie=(this.K*this.temperature)/Math.pow(distance,2);
+    }else{
+     energie=0;
+    }
+    return energie;
+
+!!!129681.java!!!	toString() : String
+  String s;
+  s=super.toString()+ "temperature en surface: "+this.temperature+" degres K";
+  return s;

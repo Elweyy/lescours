@@ -1,0 +1,3 @@
+class LanceurTimeOut
+!!!132241.java!!!	LanceurTimeOut(in s : String)
+		super(s);

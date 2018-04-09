@@ -1,0 +1,726 @@
+format 215
+"TD_Heritage_CorpsCeleste" // TD_Heritage_CorpsCeleste
+  revision 1
+  modified_by 17 "evere"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\evere\\Desktop\\IUT\\Java\\TD_Heritage_CorpsCeleste/"
+  classview 128017 "TD_Heritage_CorpsCeleste"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 128017 "CorpsCeleste"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128017 "nom"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128145 "rayon"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128273 "masse"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128017 "CorpsCeleste"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "n" explicit_type "String"
+	  param in name "r" explicit_type "double"
+	  param in name "m" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Constructeur par défaut d'un corps céleste:
+@param String n Nom du Corps
+@param double r Rayon du corps
+@param double m Masse du Corps
+"
+      end
+
+      operation 128145 "donnerNomClasseCorps"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne la classe du corps
+@return Classe du Corps
+"
+      end
+
+      operation 128273 "calculerDensite"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne la densité du corps
+@return Densité du corps
+"
+      end
+
+      operation 128401 "rendreNom"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Retourne le nom du corps
+@return le nom du corps
+"
+      end
+
+      operation 128529 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne le contenu des attributs
+@return le contenu des attributs
+"
+      end
+    end
+
+    class 128145 "CorpsRevolution"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128017 // <generalisation>
+	relation 128017 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128017 // <generalisation>
+	  b parent class_ref 128017 // CorpsCeleste
+      end
+
+      attribute 128401 "rayonOrbital"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 128145 // centreRevolution (<unidirectional association>)
+	relation 128145 --->
+	  a role_name "centreRevolution" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128145 // centreRevolution (<unidirectional association>)
+	  b parent class_ref 128017 // CorpsCeleste
+      end
+
+      operation 128657 "rendreRayonOrbital"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne le rayon orbital
+@return rayon orbital
+"
+      end
+
+      operation 128785 "donnerNomClasseCorps"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne la classe du corps
+@return Classe du Corps
+"
+      end
+
+      operation 128913 "CorpsRevolution"
+	public explicit_return_type ""
+	nparams 5
+	  param in name "n" explicit_type "String"
+	  param in name "r" explicit_type "double"
+	  param in name "m" explicit_type "double"
+	  param in name "rO" explicit_type "double"
+	  param inout name "cR" type class_ref 128017 // CorpsCeleste
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Constructeur de corps révolution
+@param  String       n             Nom du corps
+@param  double       r             Rayon du corps
+@param  double       m             Masse du corps
+@param  double       rO            Rayon orbital
+@param  CorpsCeleste cR            Corps révolution
+"
+      end
+
+      operation 129041 "tournerAutourDe"
+	public return_type class_ref 128017 // CorpsCeleste
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne le centre révolution du corps céleste
+@return le centre de révolution
+"
+      end
+
+      operation 129169 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne le contenu des attributs
+@return le contenu des attributs
+"
+      end
+    end
+
+    class 128273 "Etoile"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128273 // <generalisation>
+	relation 128273 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128273 // <generalisation>
+	  b parent class_ref 128017 // CorpsCeleste
+      end
+
+      attribute 128529 "temperature"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128657 "K"
+	class_attribute const_attribute private explicit_type "double"
+	init_value "1.414213"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129297 "donnerNomClasseCorps"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne la classe du corps
+@return Classe du Corps
+"
+      end
+
+      operation 129425 "Etoile"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "n" explicit_type "String"
+	  param in name "r" explicit_type "double"
+	  param in name "m" explicit_type "double"
+	  param in name "t" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Constructeur de la classe Etoile
+@param  String n             Nom de l'étoile
+@param  double r             Rayon de l'étoile
+@param  double m             Masse de l'étoile
+@param  double t             Température de l'étoile
+"
+      end
+
+      operation 129553 "calculerEnergieRecue"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "distance" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Calcul l'énergie reçue par l'étoile
+@param  double energie       Energie envoyée par l'étoile
+@param  double distance      Distance de l'étoile
+@return        energie
+"
+      end
+
+      operation 129681 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne le contenu des attributs
+@return le contenu des attributs
+"
+      end
+    end
+
+    class 128401 "Planete"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128401 // <generalisation>
+	relation 128401 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128401 // <generalisation>
+	  b parent class_ref 128145 // CorpsRevolution
+      end
+
+      operation 129809 "Planete"
+	public explicit_return_type ""
+	nparams 5
+	  param in name "n" explicit_type "String"
+	  param in name "r" explicit_type "double"
+	  param in name "m" explicit_type "double"
+	  param in name "rO" explicit_type "double"
+	  param inout name "cR" type class_ref 128017 // CorpsCeleste
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Constructeur de la planète
+@param  String       n             Nom de la planète
+@param  double       r             Rayon de la planète
+@param  double       m             Masse de la planète
+@param  double       rO            Rayon orbital de la planète
+@param  CorpsCeleste cR            Centre de révolution de la planète
+"
+      end
+
+      operation 129937 "avoirMemeSoleil"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "JCVD" type class_ref 128145 // CorpsRevolution
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Vérifie si deux corps ont le même Soleil
+@param  CorpsRevolution JCVD          Corps à comparer
+@return                 Booléen : vrai si même soleil, faux si soleil différent
+"
+      end
+
+      operation 130065 "donnerNomClasseCorps"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne la classe du corps
+@return Classe du Corps
+"
+      end
+
+      operation 130193 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne le contenu des attributs
+@return le contenu des attributs
+"
+      end
+    end
+
+    class 128529 "Principale"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 130321 "testGlobal"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130449 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128657 "Satellite"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128529 // <generalisation>
+	relation 128529 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128529 // <generalisation>
+	  b parent class_ref 128145 // CorpsRevolution
+      end
+
+      operation 130577 "Satellite"
+	public explicit_return_type ""
+	nparams 5
+	  param in name "n" explicit_type "String"
+	  param in name "r" explicit_type "double"
+	  param in name "m" explicit_type "double"
+	  param in name "rO" explicit_type "double"
+	  param inout name "cR" type class_ref 128017 // CorpsCeleste
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Constructeur du satellite
+@param  String       n             Nom du satellite
+@param  double       r             Rayon du satellite
+@param  double       m             Masse du satellite
+@param  double       rO            Rayon orbital du satellite
+@param  CorpsCeleste cR            Corps de révolution du satellite  
+"
+      end
+
+      operation 130705 "donnerNomClasseCorps"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne la classe du corps
+@return Classe du Corps
+"
+      end
+
+      operation 130833 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne le contenu des attributs
+@return le contenu des attributs
+"
+      end
+    end
+  end
+
+  deploymentview 128017 "TD_Heritage_CorpsCeleste"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128017 "CorpsCeleste"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128017 // CorpsCeleste
+      end
+    end
+
+    artifact 128145 "CorpsRevolution"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128145 // CorpsRevolution
+      end
+    end
+
+    artifact 128273 "Etoile"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128273 // Etoile
+      end
+    end
+
+    artifact 128401 "Planete"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128401 // Planete
+      end
+    end
+
+    artifact 128529 "Principale"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import static libtest.Lanceur.lancer;
+import static libtest.OutilTest.assertEquals;
+${definition}"
+      associated_elems
+	class_ref 128529 // Principale
+      end
+    end
+
+    artifact 128657 "Satellite"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128657 // Satellite
+      end
+    end
+
+    deploymentdiagram 128145 "Oui"
+      deploymentdiagramsettings
+       end
+      size A4
+    end
+  end
+
+  package_ref 128145 // libtest
+
+  classview 128401 "Heritage"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 128017 "Heritage"
+      classdiagramsettings member_max_width 0 end
+      size A4
+    end
+  end
+end

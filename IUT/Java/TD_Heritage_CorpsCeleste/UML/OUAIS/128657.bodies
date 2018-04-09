@@ -1,0 +1,9 @@
+class Satellite
+!!!130577.java!!!	Satellite(in n : String, in r : double, in m : double, in rO : double, inout cR : CorpsCeleste)
+    super(n,r,m,rO,cR);
+!!!130705.java!!!	donnerNomClasseCorps() : String
+    return "Satellite";
+!!!130833.java!!!	toString() : String
+    String s;
+    s=super.toString();
+    return s;

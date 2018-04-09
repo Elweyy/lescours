@@ -1,0 +1,1753 @@
+format 215
+"libtest" // TD_Heritage_CorpsCeleste::libtest
+  revision 1
+  modified_by 17 "evere"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\evere\\Desktop\\IUT\\Java\\TD_Heritage_CorpsCeleste/libtest/"
+  java_package "libtest"
+  classview 128145 "libtest"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 128785 "Lanceur"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Lanceur de Tests
+version 1.2 - gestion des null
+version 1.3 - lancement graphique ou textuel
+version 1.4 - correction bug de mise a jour avec bouton
+version 1.5 - onglet guide exceptions 
+version 2.0 - lien Junit
+           
+
+
+lanceur de test unitaire
+
+@author vthomas
+
+"
+      attribute 128785 "numLancer"
+	package explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "le nombre de lancement
+
+"
+      end
+
+      attribute 128913 "classDeTest"
+	package explicit_type "Object"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "la classe qui est à tester contient les tests
+
+"
+      end
+
+      classrelation 128657 // interfaceGraphique (<unidirectional association>)
+	relation 128657 --->
+	  a role_name "interfaceGraphique" package
+	    comment "
+L'interface graphique
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128657 // interfaceGraphique (<unidirectional association>)
+	  b parent class_ref 128913 // Sortie
+      end
+
+      operation 130961 "Lanceur"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "classedeTest" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "on construit un Lanceur possédant les test
+
+@param classedeTest
+           la classe à tester
+"
+      end
+
+      operation 131089 "lance"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "sortie" type class_ref 128913 // Sortie
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "lance les test dans la classedetest en attribut et on evoie les
+resultats
+dans l'interface
+"
+      end
+
+      operation 131217 "executeTests"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131345 "genereLog"
+	public return_type class_ref 129041 // Logs
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "genere les logs en lancant les tests
+
+@param test
+           classe de test Ã  lancer
+
+@return liste de logs obtenus
+"
+      end
+
+      operation 131473 "rechargeAChaud"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet de recharger les classes a chaud recharge la classe de
+test avec
+un classLoader (en forcant avec l'URL).
+"
+      end
+
+      operation 131601 "testeUneMethode"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "methodeATester" explicit_type "Method"
+	  param inout name "res" type class_ref 129041 // Logs
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"deprecation\")
+"
+	
+	
+	
+	comment "permet de tester une methode
+
+deux cas se produisent - soit elle renvoie une
+InvocationException et il
+y a une erreur dans l'appel - si c'est un cause par un
+TestException ==
+failure - sinon c'est une exception interne - soit elle ne
+renvoie rien
+et c'est ok
+
+@param methodeATester
+@param res
+           l'ensemble des logs
+"
+      end
+
+      operation 131729 "filtreMethodes"
+	public explicit_return_type "ArrayList<Method>"
+	nparams 1
+	  param inout name "methodes" explicit_type "Method"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "filtre les methodes et ne garde que les methodes commencant par
+test
+
+@param methodes
+           liste des methodes
+@return liste des methodes avec test dans leur nom
+"
+      end
+
+      operation 131857 "trieLesMethodesParNom"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "listeMethodes" explicit_type "ArrayList<Method>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "trie les methodes selon leur numero
+
+@param listeMethodes
+"
+      end
+
+      operation 131985 "lancer"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "classedeTest" explicit_type "Object"
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[] ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet de lancer le Test
+
+@param classedeTest
+           la classe de test à lancer
+@param args
+           les arguments qui viennent du main
+"
+      end
+    end
+
+    class 128913 "Sortie"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "gere une sortie de test
+
+@author vthomas
+
+"
+      operation 133777 "miseAjour"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "logs" type class_ref 129041 // Logs
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "fait la mise à jour (exporte les logs ou change affichage)
+"
+      end
+    end
+
+    class 129041 "Logs"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "constient une liste de Logs
+
+@author vthomas
+
+"
+      classrelation 129425 // logs (<unidirectional association>)
+	relation 129425 --->
+	  stereotype "ArrayList"
+	  a role_name "logs" package
+	    comment "la liste de logs
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129425 // logs (<unidirectional association>)
+	  b parent class_ref 129681 // Log
+      end
+
+      attribute 129681 "nomClasseTestee"
+	package explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "nom de la classe testee
+
+"
+      end
+
+      operation 133009 "Logs"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "nomClasseTestee" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur par defaut
+
+@param nomClasseTestee
+           nom de la classe testee
+"
+      end
+
+      operation 133137 "genererStatistiques"
+	public return_type class_ref 130193 // Stats
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "genere les statistiques des logs.
+
+@return un objet contenant les statistiques générales sur tous les tests
+"
+      end
+
+      operation 133265 "ajouterLog"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "log" type class_ref 129681 // Log
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129169 "LanceurTestException"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "cree une classe d'Exception qui remonte sans verifier le try catch
+
+@author vthomas
+"
+      classrelation 128785 // <generalisation>
+	relation 128785 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128785 // <generalisation>
+	  b parent class_ref 129297 // RuntimeException
+      end
+
+      operation 132113 "LanceurTestException"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur avec un message
+
+@param s
+           message d'erreur
+"
+      end
+    end
+
+    class 129425 "LanceurTimeOut"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "cree une classe d'Exception qui remonte sans verifier le try catch
+
+@author vthomas
+"
+      classrelation 128913 // <generalisation>
+	relation 128913 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128913 // <generalisation>
+	  b parent class_ref 129553 // Exception
+      end
+
+      operation 132241 "LanceurTimeOut"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur avec un message
+
+@param s
+           message d'erreur
+"
+      end
+    end
+
+    class 129681 "Log"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 129041 "nomMethode"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "le nom de la métode testee
+
+"
+      end
+
+      attribute 129169 "type"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "le résultat du Log
+
+"
+      end
+
+      attribute 129297 "classOuErreur"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "la classe testee 
+
+"
+      end
+
+      attribute 129425 "LigneErreur"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "la ligne contenant l'echec
+
+"
+      end
+
+      attribute 129553 "exception"
+	public explicit_type "Throwable"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "L'exception generee 
+
+"
+      end
+
+      operation 132369 "Log"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "par defaut il n'y a pas d'erreur
+"
+      end
+
+      operation 132497 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "affiche un log d'erreur
+"
+      end
+    end
+
+    class 129809 "LogEchec"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129041 // <generalisation>
+	relation 129041 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129041 // <generalisation>
+	  b parent class_ref 129681 // Log
+      end
+
+      operation 132625 "LogEchec"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "exceptionInterne" explicit_type "Throwable"
+	  param in name "nomMethode" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129937 "LogErreur"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129169 // <generalisation>
+	relation 129169 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129169 // <generalisation>
+	  b parent class_ref 129681 // Log
+      end
+
+      operation 132753 "LogErreur"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "exceptionInterne" explicit_type "Throwable"
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130065 "LogOk"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "gere un log qui s'est bien déroulé 
+
+"
+      classrelation 129297 // <generalisation>
+	relation 129297 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129297 // <generalisation>
+	  b parent class_ref 129681 // Log
+      end
+
+      operation 132881 "LogOk"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130193 "Stats"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "stocke les statistiques des logs de test
+
+@author vthomas
+
+"
+      attribute 130705 "nbTests"
+	package explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "le nombre de tests
+
+"
+      end
+
+      attribute 130833 "nbOk"
+	package explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "le nombre de tests ok, echecs et erreurs
+
+"
+      end
+
+      attribute 130961 "nbEchec"
+	package explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "le nombre de tests ok, echecs et erreurs
+
+"
+      end
+
+      attribute 131089 "nbErreur"
+	package explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "le nombre de tests ok, echecs et erreurs
+
+"
+      end
+
+      operation 135825 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "retourne l'affichage des statistiques
+"
+      end
+    end
+
+    class 130321 "LogTimeOut"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129553 // <generalisation>
+	relation 129553 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129553 // <generalisation>
+	  b parent class_ref 129681 // Log
+      end
+
+      operation 133393 "LogTimeOut"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "exceptionInterne" explicit_type "Throwable"
+	  param in name "nomMethode" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130449 "OutilTest"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "stocke les méthodes appelées dans les classes de test
+possade des assertEquals et des méthode de vérification par introspection
+
+@author vthomas
+
+"
+      operation 133521 "assertEquals"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param inout name "attendu" explicit_type "Object"
+	  param inout name "obtenu" explicit_type "Object"
+	  param in name "erreur" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "methode statique de comparaison
+"
+      end
+
+      operation 133649 "fail"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "erreur" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "methode statique de test qui echoue
+"
+      end
+    end
+
+    class 130577 "SortieGUI"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129681 // <realization>
+	relation 129681 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129681 // <realization>
+	  b parent class_ref 128913 // Sortie
+      end
+
+      classrelation 129809 // logs (<unidirectional association>)
+	relation 129809 --->
+	  a role_name "logs" init_value "new Logs(\"\")" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129809 // logs (<unidirectional association>)
+	  b parent class_ref 129041 // Logs
+      end
+
+      classrelation 129937 // lanceurdeTest (<unidirectional association>)
+	relation 129937 --->
+	  a role_name "lanceurdeTest" package
+	    comment "
+le lanceur de test
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129937 // lanceurdeTest (<unidirectional association>)
+	  b parent class_ref 128785 // Lanceur
+      end
+
+      classrelation 130065 // barre (<unidirectional association>)
+	relation 130065 --->
+	  a role_name "barre" package
+	    comment "
+interface graphique Barre
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130065 // barre (<unidirectional association>)
+	  b parent class_ref 130705 // SortieGUIBarre
+      end
+
+      attribute 129809 "tree"
+	class_attribute package explicit_type "JTree"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "JTree des tests
+
+"
+      end
+
+      operation 133905 "SortieGUI"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "lanceurdeTest" type class_ref 128785 // Lanceur
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "creer l'interface
+"
+      end
+
+      operation 134033 "creerInterfaceGuide"
+	private explicit_return_type "Component"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "JEditorPane textuel qui présente un Guide
+
+@return guide d'utilisation
+"
+      end
+
+      operation 134161 "creerInterfaceErreur"
+	private explicit_return_type "JPanel"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet de creer les morceaux d'interface pour gérer les erreurs et leurs
+logs
+
+@return JPanel qui est une interface de log
+"
+      end
+
+      operation 134289 "choixCouleurTree"
+	public explicit_return_type "String"
+	nparams 2
+	  param inout name "l" type class_ref 129681 // Log
+	  param in name "color" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "associe les couleurs au log
+
+@param l
+           le log concerne
+@param color
+           la couleur associee
+@return la chaine represetant la couleur
+"
+      end
+
+      operation 134417 "miseAjour"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "l" type class_ref 129041 // Logs
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 134545 "miseAJourBarre"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "fait les calculs pour la mise a jour de la barre
+
+@param logs
+           une liste de log
+"
+      end
+
+      operation 134673 "miseAJourTree"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "met a jour l'arbre
+
+@param logs
+           la liste des Logs
+"
+      end
+    end
+
+    class 130705 "SortieGUIBarre"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "classe qui permet d'afficher la barre horizontale
+
+@author vthomas
+
+"
+      classrelation 130193 // <generalisation>
+	relation 130193 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130193 // <generalisation>
+	  b parent class_ref 130833 // JPanel
+      end
+
+      attribute 129937 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 130321 // stats (<unidirectional association>)
+	relation 130321 --->
+	  a role_name "stats" init_value "new Stats()" package
+	    comment "
+attributs pour affichage des statistiques
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130321 // stats (<unidirectional association>)
+	  b parent class_ref 130193 // Stats
+      end
+
+      attribute 130065 "tailleX"
+	package explicit_type "int"
+	init_value " 400"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "attributs pour gerer taille de la barre
+
+"
+      end
+
+      attribute 130193 "TailleY"
+	package explicit_type "int"
+	init_value " 80"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130321 "decalX"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 20"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " decalage de la barre par rapport à jframe
+"
+      end
+
+      attribute 130449 "decalY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130577 "BarreY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 40"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " taille de la barre en Y
+"
+      end
+
+      operation 134801 "miseAJour"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "statistiques" type class_ref 130193 // Stats
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "met a jour la barre de status
+
+@param PnbOk
+           nombre de ok
+@param PnbErreur
+           nombre erreurs
+@param PnbEchec
+           nombre echec
+"
+      end
+
+      operation 134929 "SortieGUIBarre"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet de generer la barre à la bonne taille
+"
+      end
+
+      operation 135057 "paint"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "g" explicit_type "Graphics"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "surcharge de la méthode paint pour dessiner la barre
+"
+      end
+    end
+
+    class 130961 "SortieTexte"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 130449 // <realization>
+	relation 130449 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130449 // <realization>
+	  b parent class_ref 128913 // Sortie
+      end
+
+      operation 135185 "miseAjour"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "ls" type class_ref 129041 // Logs
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 131089 "SortieXML"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 130577 // <realization>
+	relation 130577 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130577 // <realization>
+	  b parent class_ref 128913 // Sortie
+      end
+
+      operation 135313 "miseAjour"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "ls" type class_ref 129041 // Logs
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 135441 "ecrireTests"
+	private explicit_return_type "String"
+	nparams 2
+	  param inout name "ls" type class_ref 129041 // Logs
+	  param in name "resultat" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135569 "ecrireTest"
+	private explicit_return_type "String"
+	nparams 1
+	  param inout name "l" type class_ref 129681 // Log
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135697 "ecrireStats"
+	private explicit_return_type "String"
+	nparams 2
+	  param inout name "stats" type class_ref 130193 // Stats
+	  param in name "resultat" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 131217 "ThreadExecutionTest"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Un thread permettant de lancer l'execution d'un test
+
+@author vthomas
+
+"
+      classrelation 130705 // <generalisation>
+	relation 130705 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130705 // <generalisation>
+	  b parent class_ref 131345 // Thread
+      end
+
+      attribute 131217 "DUREEMAX"
+	class_attribute public explicit_type "long"
+	init_value " 1000"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "la duree max du thread en ms
+
+"
+      end
+
+      classrelation 130833 // res (<unidirectional association>)
+	relation 130833 --->
+	  a role_name "res" package
+	    comment "
+Endroit ou stocker les logs
+
+ TODO a supprimer et a remplacer par un attribut log simple
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130833 // res (<unidirectional association>)
+	  b parent class_ref 129041 // Logs
+      end
+
+      attribute 131345 "methodeATester"
+	package explicit_type "Method"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "méthode à tester
+
+"
+      end
+
+      attribute 131473 "classDeTest"
+	package explicit_type "Object"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 135953 "ThreadExecutionTest"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "classTest" explicit_type "Object"
+	  param inout name "methode" explicit_type "Method"
+	  param inout name "logs" type class_ref 129041 // Logs
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "demande execution d'un thread
+
+@param methode
+           methode que le thread doit lancer et tester
+"
+      end
+
+      operation 136081 "run"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "méthode d'execution du thread
+"
+      end
+
+      operation 136209 "estEchec"
+	private explicit_return_type "boolean"
+	nparams 1
+	  param in name "nomException" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "verifie si l'erreur est due à un echec
+
+@param nomException l'exception recuperee
+@return true si c'est un echec
+"
+      end
+
+      operation 136337 "estTimeOut"
+	private explicit_return_type "boolean"
+	nparams 1
+	  param in name "nomException" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "verifie si l'erreur est du à un timeout
+@param nomException exception recuperee 
+@return true si c'est un timeOut
+"
+      end
+    end
+  end
+
+  deploymentview 128145 "libtest"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128785 "Lanceur"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.File;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+${definition}"
+      associated_elems
+	class_ref 128785 // Lanceur
+      end
+    end
+
+    artifact 128913 "LanceurTestException"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 129169 // LanceurTestException
+      end
+    end
+
+    artifact 129041 "LanceurTimeOut"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 129425 // LanceurTimeOut
+      end
+    end
+
+    artifact 129169 "Log"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 129681 // Log
+      end
+    end
+
+    artifact 129297 "LogEchec"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 129809 // LogEchec
+      end
+    end
+
+    artifact 129425 "LogErreur"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 129937 // LogErreur
+      end
+    end
+
+    artifact 129553 "LogOk"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 130065 // LogOk
+      end
+    end
+
+    artifact 129681 "Logs"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+${definition}"
+      associated_elems
+	class_ref 129041 // Logs
+      end
+    end
+
+    artifact 129809 "LogTimeOut"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 130321 // LogTimeOut
+      end
+    end
+
+    artifact 129937 "OutilTest"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 130449 // OutilTest
+      end
+    end
+
+    artifact 130065 "Sortie"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128913 // Sortie
+      end
+    end
+
+    artifact 130193 "SortieGUI"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+${definition}"
+      associated_elems
+	class_ref 130577 // SortieGUI
+      end
+    end
+
+    artifact 130321 "SortieGUIBarre"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import javax.swing.JPanel;
+${definition}"
+      associated_elems
+	class_ref 130705 // SortieGUIBarre
+      end
+    end
+
+    artifact 130449 "SortieTexte"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 130961 // SortieTexte
+      end
+    end
+
+    artifact 130577 "SortieXML"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 131089 // SortieXML
+      end
+    end
+
+    artifact 130705 "Stats"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 130193 // Stats
+      end
+    end
+
+    artifact 130833 "ThreadExecutionTest"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+${definition}"
+      associated_elems
+	class_ref 131217 // ThreadExecutionTest
+      end
+    end
+  end
+end

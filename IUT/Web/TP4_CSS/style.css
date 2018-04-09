@@ -1,0 +1,55 @@
+body {
+  background-color: rgb(205,201,187);
+  font-family: Arial;
+}
+div.contenu_principale h1 {
+  font-size: 3em;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #faebd7;
+  font-weight: bold;
+}
+
+div.contenu_principale h2 {
+  font-size: 2em;
+  color: rgb(70,130,180);
+
+}
+
+div.contenu_principale span {
+  font-style: italic;
+  font-weight: bold;
+  color: rgb(25,25,122);
+}
+
+div.contenu_principale a {
+  color: red;
+  text-decoration: none;
+}
+
+div.contenu_principale a:hover {
+  color:red;
+  font-size: 3em;
+  text-decoration: none;
+}
+
+div.contenu_section {
+  background-color: #faebd7;
+}
+
+div.illustration {
+  background-color: white
+}
+
+div.contenu_section p::first-letter {
+  font-size: xx-large;
+  font-style: normal;
+}
+
+div.contenu_section h1 {
+  font-size: 2em;
+}
+
+div.contenu_section span {
+  color:rgb(205,92,104);
+}

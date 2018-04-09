@@ -1,0 +1,40 @@
+class SortieXML
+!!!135313.java!!!	miseAjour(inout ls : Logs) : void
+
+		// les statistiques
+		Stats stats = ls.genererStatistiques();
+
+		// affichage de la classe de test
+		String resultat = "";
+		resultat += "<xml>\n";
+		resultat += "\n";
+		resultat = ecrireStats(stats, resultat);
+		resultat += "\n";
+		resultat = ecrireTests(ls, resultat);
+		resultat += "\n";
+		resultat += "</xml>\n";
+		System.out.println(resultat);
+!!!135441.java!!!	ecrireTests(inout ls : Logs, in resultat : String) : String
+		resultat += "  </tests>\n";
+		for (Log l : ls.logs) {
+			resultat += "    <test>\n";
+			resultat += ecrireTest(l);
+			resultat += "    </test>\n";
+		}
+		resultat += "  <tests>\n";
+		return resultat;
+!!!135569.java!!!	ecrireTest(inout l : Log) : String
+		String res="";
+		res+="        <type>"+l.type+"</type>\n";
+		res+="        <methodeTest>"+l.nomMethode+"</methodeTest>\n";
+		res+="        <classe>"+l.classOuErreur+"</classe>\n";
+		res+="        <ligne>"+l.LigneErreur+"</ligne>\n";
+		return res;
+!!!135697.java!!!	ecrireStats(inout stats : Stats, in resultat : String) : String
+		resultat += "  <stats>\n";
+		resultat += "    <nbTests>" + stats.nbTests + "</nbTests>\n";
+		resultat += "    <nbOk>" + stats.nbOk + "</nbOk>\n";
+		resultat += "    <nbEchec>" + stats.nbEchec + "</nbEchec>\n";
+		resultat += "    <nbErreur>" + stats.nbErreur + "</nbErreur>\n";
+		resultat += "  </stats>\n";
+		return resultat;

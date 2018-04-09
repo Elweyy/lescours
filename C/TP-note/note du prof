@@ -1,0 +1,20 @@
+struct yop {
+    int zip;
+    char *ville;
+    struct yop *suiv;
+}
+
+
+
+OU BIEN plus simple askip
+
+struct zip {
+    int zip;
+    struct zip* suiv;
+    struct sville *tete;
+}
+
+struct sville{
+    char *ville;
+    struct sville *suiv;
+}

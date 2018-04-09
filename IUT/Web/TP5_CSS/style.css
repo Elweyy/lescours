@@ -1,0 +1,42 @@
+div.logo {
+  text-align: center;
+  border: 1px solid ;
+  border-radius: 45px;
+  width: 50px;
+  margin-left: 200px;
+  font-size: 2em;
+
+}
+
+ul {
+  border-style: dotted;
+  width: 360px
+}
+
+ul li {
+  display: inline;
+  width: 400px;
+  border: 1px solid;
+  border-radius: 30px;
+  margin: 5px;
+  background-color: lightblue;
+  color:white;
+  padding: 0px 5px 0px 5px;
+  height: 5px;
+}
+
+li a {
+  color:white;
+  border-radius: 5px;
+  padding: 5px;
+  text-decoration: none;
+}
+
+div.section1 {
+  background-color: rgb(238,238,238);
+  border: 1px solid;
+  width: 400px;
+  height: 247px;
+  overflow: auto;
+
+}

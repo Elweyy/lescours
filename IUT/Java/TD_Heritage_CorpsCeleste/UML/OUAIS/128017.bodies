@@ -1,0 +1,21 @@
+class CorpsCeleste
+!!!128017.java!!!	CorpsCeleste(in n : String, in r : double, in m : double)
+    this.nom=n;
+    this.rayon=r;
+    this.masse=m;
+    if(m<=0) this.masse=1;
+    if(r<=0) this.rayon=1;
+    if(n==null) this.nom="Inconnu";
+!!!128145.java!!!	donnerNomClasseCorps() : String
+    return "Corps céleste";
+!!!128273.java!!!	calculerDensite() : double
+    double v=(4./3.)*Math.PI*(this.rayon*this.rayon*this.rayon);
+    double d=this.masse/v;
+    return d;
+!!!128401.java!!!	rendreNom() : String
+    return this.nom;
+!!!128529.java!!!	toString() : String
+    String s;
+    s="\n" +this.donnerNomClasseCorps()+ "\n"+ "De nom: "+this.nom+", de rayon: "+ this.rayon + "km, de masse: "+ this.masse+" tonnes,"+"\n"
+    +"de densite: "+ this.calculerDensite()+" kg par m3, " ;
+    return s;

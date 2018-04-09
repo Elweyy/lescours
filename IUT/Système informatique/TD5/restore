@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -dr TP2/projet/{www,doc}
+mv TP2/versions/V1/{www,doc} TP2/projet/
+rm -d TP2/versions/V1/

@@ -1,0 +1,24 @@
+class Logs
+!!!133009.java!!!	Logs(in nomClasseTestee : String)
+		this.nomClasseTestee = nomClasseTestee;
+		this.logs = new ArrayList<Log>();
+!!!133137.java!!!	genererStatistiques() : Stats
+		Stats statistiques = new Stats();
+		// calculs log
+		statistiques.nbTests = logs.size();
+		statistiques.nbErreur = 0;
+		statistiques.nbEchec = 0;
+		statistiques.nbOk = 0;
+
+		for (Log l : logs) {
+			if (l.type.equals("Ok"))
+				statistiques.nbOk++;
+			if (l.type.equals("Erreur"))
+				statistiques.nbErreur++;
+			if (l.type.equals("Echec"))
+				statistiques.nbEchec++;
+		}
+		return (statistiques);
+!!!133265.java!!!	ajouterLog(inout log : Log) : void
+		this.logs.add(log);
+		
