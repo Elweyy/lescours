@@ -10,9 +10,9 @@ monster.modules.actions = ( function() {
     var money;
     var awake ;
     var _showme = function () {
-            monster.modules.app.displayStatus(life,money,awake);
-            monster.modules.app.log(name +" is alive !!");
-        };
+
+        monster.modules.app.displayStatus(life,money,awake);
+    };
 
     var _init = function( n,l,m){
         name = n;
@@ -75,7 +75,7 @@ monster.modules.actions = ( function() {
                 monster.modules.app.log(name + " mange comme un cochon ! Il gagne 2 points de vie et perd 3 unités d'argent ...\n");
                 monster.modules.app.displayStatus(life,money,awake);
             }else{
-                monster.modules.app.log(name + "ne peut pas se payer à manger :( ");
+                monster.modules.app.log(name + " ne peut pas se payer à manger :( ");
             }
         }else{
             monster.modules.app.log(name + " n'est pas disponible pour manger.");
@@ -84,9 +84,42 @@ monster.modules.actions = ( function() {
 
     var _sleep = function(){
         if(_isavailable() == true ){
-            setTimeout(monster.modules.app.log(name +" s'endort"), 3000);
+            awake = false;
+            monster.modules.app.log(name + " s'endort ce gros sac. Il gagnera un point de vie à son réveil, dans 10 secondes.");
+            _showme();
+            window.setTimeout(function(){awake=true; life+=1;_showme(); monster.modules.app.log(name + " se réveille");}, 10000);
+        }else{
+            monster.modules.app.log(name + " ne peut pas dormir là maintenant tout de suite.");
         }
     }
+
+    var _randomisons = function(){
+        if(_isavailable() == true ){
+            var randomfonct = [fight,run,work,eat,sleep];
+            window.setInterval(this.randomfonct(),12000);
+        }
+    }
+
+    var _kill = function(){
+        if(_isavailable() == true){
+            life = 0;
+            awake = false;
+            money = 0;
+            monster.modules.app.log(name + " est mort ! ");
+            _showme();
+        }
+    }
+
+    var _newlife = function(){
+        if(_isavailable() == false){
+            life = 100;
+            awake = true;
+            money = 10;
+            monster.modules.app.log(name + " revient à la vie !")
+            _showme();
+        }
+    }
+
 
     /*J'ai rajouté cette petite fonction pour faciliter les vérifications
     de la disponibilité du monstre */
@@ -108,7 +141,10 @@ monster.modules.actions = ( function() {
         run : _run,
         work : _work,
         eat : _eat,
-        sleep : _sleep
+        sleep : _sleep,
+        randomisons : _randomisons,
+        kill : _kill,
+        newlife : _newlife
     };
 }) ();
 
@@ -130,13 +166,15 @@ monster.modules.app = (function () {
 
     var _run = function () {
         let actions = monster.modules.actions;
-        actions.init('Lolo',12,10);
+        actions.init('Lolo',100,10);
         showb.onclick = actions.showme;
         fighting.onclick = actions.fight;
         dodo.onclick = actions.sleep;
         nomnom.onclick = actions.eat;
         runny.onclick = actions.run;
         working.onclick = actions.work;
+        dead.onclick = actions.kill;
+        newy.onclick = actions.newlife;
 
     }
 

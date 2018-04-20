@@ -1,52 +1,137 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <string.h>
-#include <dirent.h>
 
-void droit(char* nom, char rwx[10]){
-    struct stat s;
-    lstat(nom, &s);
+#include<stdio.h>
+#include<sys/types.h>
+#include<dirent.h>
+#include<sys/stat.h>
+#include<pwd.h>
+#include<string.h>
+#include<stdlib.h>
+#include<grp.h>
 
-        memset(rwx, 0, 10);
-        if(S_ISREG(s.st_mode))
-            rwx[0] = '-';
-        else if(S_ISDIR(s.st_mode))
-            rwx[0] = 'd';
-        else if(S_ISLNK(s.st_mode))
-            rwx[0] = 'l';
+void do_ls(char[]);
+void dostat(char *, char *);
+void show_file_info(char *, struct stat *);
+void mode_to_letters(int, char[]);
+char *uid_to_name(uid_t);
+char *gid_to_name(gid_t);
 
-    if(s.st_mode & S_IRUSR) strcat(rwx, "r"); else strcat(rwx, "-");
-    if(s.st_mode & S_IWUSR) strcat(rwx, "w"); else strcat(rwx, "-");
-    if(s.st_mode & S_IXUSR) strcat(rwx, "x"); else strcat(rwx, "-");
-
-    if(s.st_mode & S_IRGRP) strcat(rwx, "r"); else strcat(rwx, "-");
-    if(s.st_mode & S_IWGRP) strcat(rwx, "w"); else strcat(rwx, "-");
-    if(s.st_mode & S_IXGRP) strcat(rwx, "x"); else strcat(rwx, "-");
-
-    if(s.st_mode & S_IROTH) strcat(rwx, "r"); else strcat(rwx, "-");
-    if(s.st_mode & S_IWOTH) strcat(rwx, "w"); else strcat(rwx, "-");
-    if(s.st_mode & S_IXOTH) strcat(rwx, "x"); else strcat(rwx, "-");
+int main(int ac, char *av[])
+{
+	if (ac == 1)
+		do_ls(".");
+	else
+		while(--ac){
+			printf("%s:\n", * ++av);
+			do_ls(*av);
+		}
+	return 0;
 }
 
-int main(int argc, char **argv){
-    struct stat s;
-    DIR* rep = NULL;
-    struct dirent* fichierLu = NULL; /* Déclaration d'un pointeur vers la structure dirent. */
-    rep = opendir(argv[1]);
-    if(rep == NULL)
-        exit(1);
 
-    while((fichierLu = readdir(rep)) != NULL){
-        lstat(fichierLu->d_name, &s);
-        char rwx[10];
-        droit(fichierLu->d_name, rwx);
-        printf("%d %s %d %s \n", (int)s.st_ino, rwx, (int)s.st_nlink, fichierLu->d_name);
-    }
+void do_ls(char dirname[])
 
-    if (closedir(rep) == -1)
-        exit(-1);
+{
+	DIR	*dir_ptr;
+	struct dirent	*direntp;
+	if((dir_ptr = opendir(dirname)) == NULL)
+		fprintf(stderr, "ls: impossible d'ouvrir %s\n", dirname);
+	else
+	{
+		while((direntp=readdir(dir_ptr)) != NULL){
+			char *p = (char *)malloc(strlen(dirname) + strlen(direntp->d_name) + 2);
+			if(p){
+				strcpy(p, dirname);
+				strcat(p, "/");
+				strcat(p, direntp->d_name);
+				dostat(p, direntp->d_name);
+				free(p);
+			}
+			else
+			{
+				printf("L'allocation mémoire a échoué!");
+				exit(1);
+			}
+		}
+		closedir(dir_ptr);
+	}
+}
 
-        return 0;
+void dostat(char *absoluteFileName, char *filename)
+{
+	struct stat info;
+	if(stat(absoluteFileName, &info) == -1)
+		perror(filename);
+	else
+		show_file_info(filename, &info);
+}
+
+void show_file_info(char *filename, struct stat *info_p)
+
+{
+	char	*uid_to_name(), *ctime(), *gid_to_name(), *filemode();
+	void mode_to_letters();
+	char modestr[11];
+
+	mode_to_letters(info_p->st_mode, modestr);
+
+	printf("%s",modestr);
+	printf("%4d ", (int)info_p->st_nlink);
+	printf("%-8s ", uid_to_name(info_p->st_uid));
+	printf("%-8s ", gid_to_name(info_p->st_gid));
+	printf("%8ld ", (long)info_p->st_size);
+	printf("%.12s ", 4+ctime(&info_p->st_mtime));
+	printf("%s\n", filename);
+}
+
+
+void mode_to_letters(int mode, char str[])
+{
+	strcpy(str, "----------");
+
+	if(S_ISDIR(mode)) str[0] = 'd';
+	if(S_ISCHR(mode)) str[0] = 'c';
+	if(S_ISBLK(mode)) str[0] = 'b';
+
+	if(mode & S_IRUSR) str[1] = 'r';
+	if(mode & S_IWUSR) str[2] = 'w';
+	if(mode & S_IXUSR) str[3] = 'x';
+
+	if(mode & S_IRGRP) str[4] = 'r';
+	if(mode & S_IWGRP) str[5] = 'w';
+	if(mode & S_IXGRP) str[6] = 'x';
+
+	if(mode & S_IROTH) str[7] = 'r';
+	if(mode & S_IWOTH) str[8] = 'w';
+	if(mode & S_IXOTH) str[9] = 'x';
+
+}
+
+
+char *uid_to_name(uid_t uid)
+
+{
+	struct passwd *getpwuid(), *pw_ptr;
+	static char numstr[10];
+
+	if((pw_ptr = getpwuid(uid)) == NULL){
+		sprintf(numstr, "%d", uid);
+		return numstr;
+	}
+	else
+		return pw_ptr->pw_name;
+}
+
+
+char *gid_to_name(gid_t gid)
+
+{
+	struct group *getgrgid(), *grp_ptr;
+	static char numstr[10];
+
+	if((grp_ptr = getgrgid(gid)) == NULL){
+		sprintf(numstr, "%d", gid);
+		return numstr;
+	}
+	else
+		return grp_ptr->gr_name;
 }
