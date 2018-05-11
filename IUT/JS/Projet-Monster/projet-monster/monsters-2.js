@@ -94,10 +94,8 @@ monster.modules.actions = ( function() {
     }
 
     var _randomisons = function(){
-        if(_isavailable() == true ){
-            var randomfonct = [fight,run,work,eat,sleep];
-            window.setInterval(this.randomfonct(),12000);
-        }
+            var randomfonct = [_fight(),_run(),_work(),_eat(),_sleep()];
+            window.setInterval(function(){life-=1; randomfonct[Math.floor(Math.random()*randomfonct.length)];_showme();},12000);
     }
 
     var _kill = function(){
@@ -167,6 +165,7 @@ monster.modules.app = (function () {
     var _run = function () {
         let actions = monster.modules.actions;
         actions.init('Lolo',100,10);
+        actions.randomisons;
         showb.onclick = actions.showme;
         fighting.onclick = actions.fight;
         dodo.onclick = actions.sleep;
