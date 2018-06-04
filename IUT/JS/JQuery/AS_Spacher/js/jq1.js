@@ -120,12 +120,11 @@ jql.modules.menu = function(){
 jql.modules.modale = function(){
 
     var _init = function(){
-      $("#modal_close").click(jql.modules.modale.close("#modal1"));
-      $("#four").click(jql.modules.modale.close("#modal1"));
+      $("#modal_close").click(jql.modules.modale.close);
     };
 
-    var _close =function(id){
-      $(id).slideToggle();
+    var _close =function(){
+      $("#modal1").fadeToggle();
     }
 
     return {
